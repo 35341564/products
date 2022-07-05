@@ -1,12 +1,17 @@
+import os
 shop_list = []
 
-with open('products.csv','r',encoding='utf-8')as f:
-    for line in f:
-        if '商品,價格' in line:
-            continue #跳到下一迴圈，不會跳出
-        name,price = line.strip().split(',')
-        shop_list.append([name,price])
-print(shop_list)
+if os.path.isfile('products.csv'):
+    print('找到檔案')
+    with open('products.csv','r',encoding='utf-8')as f:
+        for line in f:
+            if '商品,價格' in line:
+                continue #跳到下一迴圈，不會跳出
+            name,price = line.strip().split(',')
+            shop_list.append([name,price])
+    print(shop_list)
+else:
+    print('找不到檔案')
 
 while True:
     shop_name = input('請輸入商品名稱: ')
